@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  web:
+    image: 
+    container_name: web23
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./apps:/var/www/html
+    depends_on:
+      - bus
+
+  bus:
+   container_name: magentob
+   image: elasticsearch:7.6.0
+   environment:
+     - node.name=magentos1
+     - cluster.name=magentos1
+     - cluster.initial_master_nodes=magentos1
+     #- discovery.type=single-node
+    # - bootstrap.memory_lock=true
+     - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
+    #ulimits:
+     # memlock:
+      #  soft: -1
+       # hard: -1

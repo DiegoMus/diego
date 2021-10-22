@@ -99,7 +99,8 @@ RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && apt-get clean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /usr/share/nginx/html/* 
+    && rm -r /usr/share/nginx/html/* 
+    
 
 # Supervisor config
 COPY ./supervisord.conf /etc/supervisord.conf
@@ -109,7 +110,7 @@ COPY ./default.conf /etc/nginx/conf.d/default.conf
 
 
 # Override default nginx welcome page
-#COPY magento2 /usr/share/nginx/html
+ #COPY magento2 /usr/share/nginx/html
 
 # Copy Scripts
 COPY ./start.sh /start.sh
